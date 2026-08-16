@@ -1,0 +1,225 @@
+LECTURE 6 — NUMBER SYSTEMS & BINARY
+======================================
+
+These are THEORY / REVISION NOTES.
+They do NOT need to be coded.
+Keep this file inside your Lecture-06 folder.
+
+1. NUMBER SYSTEM
+-----------------
+Binary       = Base 2  = 0, 1
+Decimal      = Base 10 = 0–9
+Octal        = Base 8  = 0–7
+Hexadecimal  = Base 16 = 0–9, A–F
+
+The base tells us how many digits the number system uses.
+
+2. BINARY NUMBER SYSTEM
+-----------------------
+Binary is the base-2 number system and uses only 0 and 1.
+
+Computers use binary because digital circuits can represent two states,
+such as OFF/ON or LOW/HIGH.
+
+Binary place values from right to left:
+
+128  64  32  16  8  4  2  1
+2^7 2^6 2^5 2^4 2^3 2^2 2^1 2^0
+
+3. BINARY → DECIMAL
+-------------------
+Multiply each binary digit by its power of 2 and add.
+
+Example:
+1011₂
+= 1×2^3 + 0×2^2 + 1×2^1 + 1×2^0
+= 8 + 0 + 2 + 1
+= 11
+
+Therefore:
+1011₂ = 11₁₀
+
+Quick method:
+8 4 2 1
+1 0 1 1
+Take positions containing 1:
+8 + 2 + 1 = 11
+
+4. DECIMAL → BINARY
+-------------------
+Repeatedly divide by 2 and record the remainder.
+
+Example: 13
+
+13 ÷ 2 = 6 remainder 1
+ 6 ÷ 2 = 3 remainder 0
+ 3 ÷ 2 = 1 remainder 1
+ 1 ÷ 2 = 0 remainder 1
+
+Read remainders BOTTOM → TOP:
+1101
+
+Therefore:
+13₁₀ = 1101₂
+
+Remember:
+Decimal → Binary = divide by 2, read upward.
+Binary → Decimal = powers of 2, add.
+
+5. COMMON DECIMAL ↔ BINARY VALUES
+----------------------------------
+0  = 0
+1  = 1
+2  = 10
+3  = 11
+4  = 100
+5  = 101
+6  = 110
+7  = 111
+8  = 1000
+9  = 1001
+10 = 1010
+11 = 1011
+12 = 1100
+13 = 1101
+14 = 1110
+15 = 1111
+16 = 10000
+
+Powers of 2:
+1 = 1
+2 = 10
+4 = 100
+8 = 1000
+16 = 10000
+32 = 100000
+64 = 1000000
+128 = 10000000
+
+6. QUICK BINARY TRICKS
+----------------------
+Last binary digit tells even/odd:
+
+...0 = EVEN
+...1 = ODD
+
+Examples:
+10 = 1010 → even
+11 = 1011 → odd
+
+C++ connection:
+n % 2 == 0 → even
+n % 2 != 0 → odd
+
+7. 1'S COMPLEMENT
+-----------------
+Flip every bit:
+
+0 → 1
+1 → 0
+
+Example:
+Original:       101100
+1's complement: 010011
+
+8. 2'S COMPLEMENT
+-----------------
+Method:
+1. Find the 1's complement.
+2. Add 1.
+
+Example:
+Original:
+101100
+
+1's complement:
+010011
+
+Add 1:
+010011
+     +1
+------
+010100
+
+2's complement = 010100
+
+9. 2'S COMPLEMENT SHORTCUT
+--------------------------
+Start from the RIGHT.
+
+1. Keep bits unchanged through the FIRST 1.
+2. Flip every bit to its LEFT.
+
+Example:
+101100
+
+First 1 from the right is the third bit from the right.
+
+Keep that 1 and everything to its right.
+Flip everything to its left.
+
+101100
+↓
+010100
+
+2's complement = 010100
+
+10. REVERSE / 2'S COMPLEMENT AGAIN
+-----------------------------------
+To get the original number back, take the 2's complement again.
+
+Example:
+Original:
+101100
+
+2's complement:
+010100
+
+2's complement of 010100:
+101100
+
+Therefore:
+2's complement of the 2's complement = original number.
+
+11. ONE-MINUTE REVISION
+-----------------------
+Binary = base 2
+Decimal = base 10
+Octal = base 8
+Hexadecimal = base 16
+
+Binary place values:
+128 64 32 16 8 4 2 1
+
+Decimal → Binary:
+Divide by 2 → read remainders bottom to top.
+
+Binary → Decimal:
+Use powers of 2 → add.
+
+1's complement:
+Flip every bit.
+
+2's complement:
+1's complement + 1.
+
+2's complement shortcut:
+From right → keep through first 1 → flip everything to its left.
+
+2's complement twice:
+Returns the original number.
+
+WHAT TO MEMORIZE:
+✓ Base of binary = 2
+✓ Binary uses 0 and 1
+✓ 128 64 32 16 8 4 2 1
+✓ Decimal → divide by 2, read upward
+✓ Binary → powers of 2, add
+✓ Last bit 0 = even
+✓ Last bit 1 = odd
+✓ 1's complement = flip bits
+✓ 2's complement = flip bits + 1
+✓ 2's complement shortcut
+✓ 2's complement twice = original
+
+These notes are for revision, not programming practice.
