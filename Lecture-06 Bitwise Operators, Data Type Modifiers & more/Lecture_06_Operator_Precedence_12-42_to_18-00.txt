@@ -1,0 +1,181 @@
+LECTURE 6 — OPERATOR PRECEDENCE
+C++ Revision Notes
+Source: Apna College — Bitwise Operators, Data Type Modifiers & more
+Video: https://youtu.be/r-u4uh3QvsQ
+Section: 12:42 → 18:00
+
+1. OPERATOR PRECEDENCE
+When an expression contains multiple operators, C++ uses precedence
+rules to decide which operation happens first.
+
+Example:
+    2 + 3 * 4
+    = 2 + 12
+    = 14
+
+* has higher precedence than +.
+
+2. PARENTHESES
+Parentheses can explicitly control the order.
+
+    2 + 3 * 4       → 14
+    (2 + 3) * 4     → 20
+
+3. BASIC ARITHMETIC PRECEDENCE
+    * / %     have higher precedence
+    + -       have lower precedence
+
+Example:
+    10 + 20 * 3
+    = 10 + 60
+    = 70
+
+4. SAME PRECEDENCE — ASSOCIATIVITY
+When operators have the same precedence, associativity determines
+the direction of evaluation.
+
+Arithmetic operators here are generally evaluated LEFT TO RIGHT.
+
+Example:
+    20 / 5 * 2
+    = (20 / 5) * 2
+    = 4 * 2
+    = 8
+
+Example:
+    20 - 5 + 3
+    = (20 - 5) + 3
+    = 18
+
+5. RELATIONAL OPERATORS
+    <     less than
+    <=    less than or equal
+    >     greater than
+    >=    greater than or equal
+
+Arithmetic happens before comparison.
+
+Example:
+    5 + 2 > 6
+    → 7 > 6
+    → true
+
+6. EQUALITY OPERATORS
+    ==    equal to
+    !=    not equal to
+
+Example:
+    5 + 2 == 7
+    → 7 == 7
+    → true
+
+IMPORTANT:
+    =     assignment
+    ==    comparison
+
+7. LOGICAL OPERATORS
+    &&    Logical AND
+    ||    Logical OR
+    !     Logical NOT
+
+Example:
+    5 > 2 && 8 > 3
+    → true && true
+    → true
+
+8. BITWISE PRECEDENCE
+For the bitwise operators learned earlier:
+
+    &  has higher precedence than ^
+    ^  has higher precedence than |
+
+So:
+    & → ^ → |
+
+Example:
+    5 | 3 & 1
+
+First:
+    3 & 1
+
+Then:
+    5 | result
+
+9. SIMPLIFIED PRECEDENCE ORDER
+Higher → lower:
+
+    ( )
+    Unary operators: ++ -- ! unary + -
+    * / %
+    + -
+    < <= > >=
+    == !=
+    &
+    ^
+    |
+    &&
+    ||
+    = += -= *= /= ...
+
+This is a simplified course-level order, not the complete C++
+precedence table.
+
+10. PRECEDENCE VS ASSOCIATIVITY
+
+PRECEDENCE:
+    Which operator gets priority?
+
+ASSOCIATIVITY:
+    If operators have the same precedence, which direction are
+    they evaluated?
+
+Example:
+    20 / 5 * 2
+    → (20 / 5) * 2
+    → 8
+
+11. MIXED EXPRESSION
+
+    2 + 3 * 4 > 10 && 5 < 8
+
+Step 1:
+    3 * 4 = 12
+
+Step 2:
+    2 + 12 = 14
+
+Step 3:
+    14 > 10 → true
+    5 < 8   → true
+
+Step 4:
+    true && true → true
+
+12. WHY USE PARENTHESES?
+Even when you know precedence, parentheses make complicated
+expressions easier to read and reduce mistakes.
+
+Example:
+    cout << (a & b);
+
+13. QUICK CHEAT SHEET
+
+    ()                  highest
+    ++ -- !             unary
+    * / %
+    + -
+    < <= > >=
+    == !=
+    &
+    ^
+    |
+    &&
+    ||
+    = += -= *= /=       lower
+
+MOST IMPORTANT:
+    Higher precedence → evaluated first.
+    Same precedence → associativity decides the direction.
+    When unsure → use parentheses.
+
+END OF NOTES

@@ -1,0 +1,419 @@
+LECTURE 6 — BITWISE OPERATORS
+Apna College C++ / DSA Series
+Video: Bitwise Operators, Data Type Modifiers & more
+Covered: 0:00 → 12:00 (up to Bitwise Operators)
+
+These are THEORY + CODE revision notes. Keep this file inside Lecture-06.
+
+==================================================
+1. WHAT ARE BITWISE OPERATORS?
+==================================================
+
+Bitwise operators work directly on the individual BITS of an integer.
+
+Main operators:
+
+&   Bitwise AND
+|   Bitwise OR
+^   Bitwise XOR
+<<  Left Shift
+>>  Right Shift
+
+
+==================================================
+2. BITWISE AND (&)
+==================================================
+
+AND compares two bits.
+
+A   B   A & B
+0   0    0
+0   1    0
+1   0    0
+1   1    1
+
+Only 1 & 1 gives 1.
+
+Example:
+
+5 = 0101
+3 = 0011
+
+    0101
+  & 0011
+  ------
+    0001
+
+Therefore:
+
+5 & 3 = 1
+
+C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 5;
+    int b = 3;
+
+    cout << (a & b) << endl;
+
+    return 0;
+}
+
+Output:
+1
+
+
+==================================================
+3. BITWISE OR (|)
+==================================================
+
+OR compares two bits.
+
+A   B   A | B
+0   0    0
+0   1    1
+1   0    1
+1   1    1
+
+Only 0 | 0 gives 0.
+
+Example:
+
+5 = 0101
+3 = 0011
+
+    0101
+  | 0011
+  ------
+    0111
+
+Therefore:
+
+5 | 3 = 7
+
+C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 5;
+    int b = 3;
+
+    cout << (a | b) << endl;
+
+    return 0;
+}
+
+Output:
+7
+
+
+==================================================
+4. BITWISE XOR (^)
+==================================================
+
+XOR gives 1 when the two bits are DIFFERENT.
+
+A   B   A ^ B
+0   0    0
+0   1    1
+1   0    1
+1   1    0
+
+Example:
+
+5 = 0101
+3 = 0011
+
+    0101
+  ^ 0011
+  ------
+    0110
+
+Therefore:
+
+5 ^ 3 = 6
+
+C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 5;
+    int b = 3;
+
+    cout << (a ^ b) << endl;
+
+    return 0;
+}
+
+Output:
+6
+
+
+==================================================
+5. LEFT SHIFT (<<)
+==================================================
+
+The left-shift operator moves bits to the LEFT.
+
+a << n
+
+means: shift the bits of a left by n positions.
+
+Example:
+
+5 = 0101
+
+5 << 1:
+
+0101 → 1010
+
+1010 = 10
+
+Therefore:
+
+5 << 1 = 10
+
+C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 5;
+
+    cout << (a << 1) << endl;
+
+    return 0;
+}
+
+Output:
+10
+
+For basic positive integers:
+
+a << 1 ≈ a × 2
+a << 2 ≈ a × 4
+a << 3 ≈ a × 8
+
+So:
+
+LEFT SHIFT → multiply by powers of 2.
+
+
+==================================================
+6. RIGHT SHIFT (>>)
+==================================================
+
+The right-shift operator moves bits to the RIGHT.
+
+a >> n
+
+means: shift the bits of a right by n positions.
+
+Example:
+
+20 = 10100
+
+20 >> 1:
+
+10100 → 01010
+
+01010 = 10
+
+Therefore:
+
+20 >> 1 = 10
+
+C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 20;
+
+    cout << (a >> 1) << endl;
+
+    return 0;
+}
+
+Output:
+10
+
+For basic positive integers:
+
+a >> 1 ≈ a / 2
+a >> 2 ≈ a / 4
+a >> 3 ≈ a / 8
+
+So:
+
+RIGHT SHIFT → divide by powers of 2.
+
+
+==================================================
+7. ALL BITWISE OPERATORS — QUICK TABLE
+==================================================
+
+Operator     Name              Basic idea
+
+&            AND               1 only when both are 1
+|            OR                1 when at least one is 1
+^            XOR               1 when bits are different
+<<           Left Shift        Shift bits left
+>>           Right Shift       Shift bits right
+
+
+==================================================
+8. TRUTH TABLE — QUICK REVISION
+==================================================
+
+A B | AND | OR | XOR
+
+0 0 |  0  |  0 |  0
+0 1 |  0  |  1 |  1
+1 0 |  0  |  1 |  1
+1 1 |  1  |  1 |  0
+
+Shortcut:
+
+AND = both must be 1
+OR  = at least one must be 1
+XOR = bits must be different
+
+
+==================================================
+9. EXAMPLES
+==================================================
+
+5 & 3:
+
+0101
+0011
+----
+0001
+
+Answer = 1
+
+
+5 | 3:
+
+0101
+0011
+----
+0111
+
+Answer = 7
+
+
+5 ^ 3:
+
+0101
+0011
+----
+0110
+
+Answer = 6
+
+
+5 << 1:
+
+0101 → 1010
+
+Answer = 10
+
+
+20 >> 1:
+
+10100 → 01010
+
+Answer = 10
+
+
+==================================================
+10. IMPORTANT: LOGICAL vs BITWISE
+==================================================
+
+These are different:
+
+&&  → Logical AND
+||  → Logical OR
+
+&   → Bitwise AND
+|   → Bitwise OR
+
+^   → Bitwise XOR
+<<  → Bitwise left shift
+>>  → Bitwise right shift
+
+Logical operators work with logical conditions.
+Bitwise operators work with the individual bits of integer values.
+
+
+==================================================
+11. REVISION CODE — ALL MAIN OPERATORS
+==================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 5;
+    int b = 3;
+
+    cout << (a & b) << endl;   // AND
+    cout << (a | b) << endl;   // OR
+    cout << (a ^ b) << endl;   // XOR
+    cout << (a << 1) << endl;  // Left shift
+    cout << (a >> 1) << endl;  // Right shift
+
+    return 0;
+}
+
+Output:
+
+1
+7
+6
+10
+2
+
+
+==================================================
+12. ONE-MINUTE REVISION
+==================================================
+
+&  → AND  → both 1 → 1
+|  → OR   → any 1  → 1
+^  → XOR  → different → 1
+
+<< → move bits LEFT
+>> → move bits RIGHT
+
+For basic positive integers:
+
+a << n → a × 2^n
+a >> n → a / 2^n
+
+Remember:
+
+AND = BOTH
+OR  = ANY
+XOR = DIFFERENT
+
+
+==================================================
+END OF REQUESTED SECTION
+==================================================
+
+This file intentionally stops at the Bitwise Operators section
+(around 12:00 of the lecture).
+
+Data type modifiers and topics after this point are NOT included.

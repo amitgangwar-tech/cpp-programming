@@ -1,0 +1,354 @@
+LECTURE 6 — DATA TYPE MODIFIERS
+C++ Revision Notes
+
+Source: Apna College — Bitwise Operators, Data Type Modifiers & more
+Video: https://youtu.be/r-u4uh3QvsQ
+Requested section: 24:00 → 35:00
+
+==================================================
+1. WHAT ARE DATA TYPE MODIFIERS?
+==================================================
+
+Data type modifiers are used to modify the properties of basic
+data types.
+
+The main modifiers discussed are:
+
+    signed
+    unsigned
+    short
+    long
+
+They can change the range and/or size of values that a data type
+can store.
+
+==================================================
+2. SIGNED
+==================================================
+
+A signed data type can store BOTH:
+
+    positive values
+    negative values
+
+For example:
+
+    signed int x = -10;
+
+The normal int type is signed by default, so these are effectively
+the same idea:
+
+    int x = -10;
+
+    signed int x = -10;
+
+The signed modifier allows the type to represent values on both
+sides of zero.
+
+==================================================
+3. UNSIGNED
+==================================================
+
+An unsigned data type can store only:
+
+    0 and positive values
+
+It cannot represent negative values.
+
+Example:
+
+    unsigned int x = 10;
+
+This is useful when you know a value will never need to be negative.
+
+Because the negative side of the range is removed, the available
+positive range becomes larger.
+
+IMPORTANT:
+
+Do not use unsigned simply because the number is positive in one
+particular example. Choose it when the variable logically represents
+a value that cannot be negative.
+
+==================================================
+4. SIGNED vs UNSIGNED
+==================================================
+
+SIGNED:
+
+    Can store:
+        negative
+        zero
+        positive
+
+UNSIGNED:
+
+    Can store:
+        zero
+        positive
+
+Example:
+
+    signed int a = -5;      // valid
+    unsigned int b = 5;     // valid
+
+A negative value is not appropriate for an unsigned variable.
+
+==================================================
+5. SHORT
+==================================================
+
+short is used to request a smaller integer type.
+
+Example:
+
+    short int x = 100;
+
+It generally uses less storage than a regular int, although the exact
+size is implementation-dependent.
+
+The important idea for now:
+
+    short → smaller integer range/storage than int
+
+Use sizeof() to check the actual size on your compiler.
+
+Example:
+
+    cout << sizeof(short int) << endl;
+
+==================================================
+6. LONG
+==================================================
+
+long is used to request a larger integer type than a normal int
+where the implementation provides a larger range.
+
+Example:
+
+    long int x = 100000;
+
+Again, the exact size of long is implementation-dependent.
+
+You can check it using:
+
+    cout << sizeof(long int) << endl;
+
+The important idea:
+
+    long → potentially larger integer range/storage
+
+==================================================
+7. COMBINING MODIFIERS
+==================================================
+
+Some modifiers can be combined.
+
+For example:
+
+    unsigned int
+    signed int
+    short int
+    long int
+    unsigned long int
+    signed long int
+
+The exact combinations allowed and their sizes depend on C++ rules
+and the implementation.
+
+For our current level, remember the main modifiers individually and
+understand what they do to the range.
+
+==================================================
+8. sizeof() OPERATOR
+==================================================
+
+sizeof() tells us how much memory a data type or variable occupies.
+
+Example:
+
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+
+        cout << sizeof(int) << endl;
+        cout << sizeof(short int) << endl;
+        cout << sizeof(long int) << endl;
+
+        return 0;
+    }
+
+The result is measured in BYTES.
+
+IMPORTANT:
+
+The exact result can depend on the compiler/system.
+
+Do not memorize a size without considering the platform.
+
+==================================================
+9. BASIC EXAMPLE
+==================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int a = 10;
+    unsigned int b = 20;
+    short int c = 30;
+    long int d = 40;
+
+    cout << a << endl;
+    cout << b << endl;
+    cout << c << endl;
+    cout << d << endl;
+
+    return 0;
+}
+
+Here the values demonstrate different modified integer types.
+
+==================================================
+10. WHY MODIFIERS MATTER
+==================================================
+
+Suppose a variable can never be negative.
+
+Example:
+
+    number of students
+    number of items
+    age
+    array size
+
+Using an unsigned type can represent the non-negative nature of the
+value.
+
+Similarly, if a variable needs a particularly small or large integer
+range, short or long may be considered.
+
+The important principle is:
+
+    Choose a data type based on the values the variable needs to
+    represent.
+
+==================================================
+11. QUICK COMPARISON
+==================================================
+
+Modifier     Main idea
+
+signed       negative + zero + positive
+unsigned     zero + positive
+short        smaller integer type/range
+long         larger integer type/range
+
+Remember:
+
+    signed   → can be negative
+    unsigned → cannot be negative
+    short    → smaller
+    long     → larger
+
+==================================================
+12. REVISION CODE
+==================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    signed int a = -10;
+    unsigned int b = 10;
+    short int c = 20;
+    long int d = 100000;
+
+    cout << a << endl;
+    cout << b << endl;
+    cout << c << endl;
+    cout << d << endl;
+
+    cout << sizeof(a) << endl;
+    cout << sizeof(b) << endl;
+    cout << sizeof(c) << endl;
+    cout << sizeof(d) << endl;
+
+    return 0;
+}
+
+The first four lines demonstrate the modified types.
+The sizeof() lines show the amount of storage used by each variable
+on the current implementation.
+
+==================================================
+13. IMPORTANT CAUTION WITH UNSIGNED
+==================================================
+
+An unsigned integer cannot represent negative values.
+
+Therefore, mixing signed and unsigned values in expressions can
+sometimes produce surprising results because C++ may convert values
+between signed and unsigned types.
+
+For now, the key rule is simply:
+
+    unsigned → only non-negative values
+
+==================================================
+14. ONE-MINUTE CHEAT SHEET
+==================================================
+
+DATA TYPE MODIFIERS:
+
+    signed
+        ↓
+    negative + zero + positive
+
+    unsigned
+        ↓
+    zero + positive
+
+    short
+        ↓
+    smaller integer type/range
+
+    long
+        ↓
+    larger integer type/range
+
+    sizeof()
+        ↓
+    tells storage size in bytes
+
+==================================================
+15. FINAL TAKEAWAY
+==================================================
+
+Data type modifiers modify the behavior/range of basic data types.
+
+The four important modifiers here are:
+
+    signed
+    unsigned
+    short
+    long
+
+The easiest way to remember them:
+
+    SIGNED   → can go below zero
+    UNSIGNED → starts at zero
+    SHORT    → smaller
+    LONG     → larger
+
+And:
+
+    sizeof(type)
+
+can be used to check how many bytes the type occupies on the
+current system.
+
+END OF LECTURE 6 — DATA TYPE MODIFIERS

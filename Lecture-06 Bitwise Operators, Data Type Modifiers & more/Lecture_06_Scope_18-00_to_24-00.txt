@@ -1,0 +1,399 @@
+LECTURE 6 — SCOPE
+C++ Revision Notes
+
+Source: Apna College — Bitwise Operators, Data Type Modifiers & more
+Video: https://youtu.be/r-u4uh3QvsQ
+Requested section: 18:00 → 24:00
+
+==================================================
+1. WHAT IS SCOPE?
+==================================================
+
+SCOPE means the region of a program where a variable can be accessed
+or used.
+
+In simple words:
+
+    Scope = Where can I use this variable?
+
+A variable is only accessible inside the scope in which it is defined,
+subject to the normal C++ scope rules.
+
+
+==================================================
+2. LOCAL SCOPE
+==================================================
+
+A variable declared inside a block/function is a LOCAL variable.
+
+Example:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int x = 10;
+
+    cout << x << endl;
+
+    return 0;
+}
+
+Here x is declared inside main(), so it can be used inside main().
+
+
+==================================================
+3. BLOCK SCOPE
+==================================================
+
+A block is a section of code surrounded by { }.
+
+Example:
+
+int main() {
+
+    int x = 10;
+
+    {
+        int y = 20;
+
+        cout << y << endl;
+        cout << x << endl;
+    }
+
+    return 0;
+}
+
+The variable y exists only inside the inner block.
+
+So this works:
+
+    {
+        int y = 20;
+        cout << y;
+    }
+
+But this does NOT work:
+
+    {
+        int y = 20;
+    }
+
+    cout << y;   // ERROR
+
+Why?
+
+Because y's scope ended when the inner block ended.
+
+
+==================================================
+4. OUTER SCOPE AND INNER SCOPE
+==================================================
+
+A variable declared in an outer scope can generally be accessed from
+an inner scope.
+
+Example:
+
+int main() {
+
+    int x = 10;
+
+    {
+        cout << x << endl;
+    }
+
+    return 0;
+}
+
+This works because x belongs to the outer scope and the inner block
+is inside that scope.
+
+
+But a variable declared in an inner scope cannot normally be accessed
+from the outer scope.
+
+Example:
+
+int main() {
+
+    {
+        int y = 20;
+    }
+
+    cout << y;   // ERROR
+
+    return 0;
+}
+
+
+==================================================
+5. GLOBAL SCOPE
+==================================================
+
+A variable declared outside all functions is a GLOBAL variable.
+
+Example:
+
+#include <iostream>
+using namespace std;
+
+int x = 10;
+
+int main() {
+
+    cout << x << endl;
+
+    return 0;
+}
+
+Here x is declared outside main(), so it has global scope.
+
+It can be accessed by functions in the same program where the normal
+scope rules allow it.
+
+
+==================================================
+6. LOCAL vs GLOBAL VARIABLE
+==================================================
+
+GLOBAL VARIABLE:
+
+    Declared outside functions.
+    Has global scope.
+
+LOCAL VARIABLE:
+
+    Declared inside a function/block.
+    Has local/block scope.
+
+Example:
+
+int global = 100;
+
+int main() {
+
+    int local = 50;
+
+    cout << global << endl;
+    cout << local << endl;
+
+    return 0;
+}
+
+
+==================================================
+7. SAME VARIABLE NAME IN DIFFERENT SCOPES
+==================================================
+
+A local variable can have the same name as a global variable.
+
+Example:
+
+#include <iostream>
+using namespace std;
+
+int x = 10;
+
+int main() {
+
+    int x = 20;
+
+    cout << x << endl;
+
+    return 0;
+}
+
+The output is:
+
+    20
+
+Why?
+
+Because inside main(), the local x takes priority over the global x.
+
+The closer/inner declaration is used.
+
+
+==================================================
+8. INNER SCOPE HIDING OUTER SCOPE
+==================================================
+
+Example:
+
+int x = 10;
+
+int main() {
+
+    int x = 20;
+
+    {
+        int x = 30;
+
+        cout << x << endl;
+    }
+
+    return 0;
+}
+
+Inside the innermost block, the nearest x is used.
+
+So:
+
+    x = 30
+
+The inner variable HIDES the outer variable with the same name.
+
+
+==================================================
+9. USING THE GLOBAL VARIABLE WITH ::
+==================================================
+
+The scope resolution operator is:
+
+    ::
+
+It can be used to access a global variable when a local variable has
+the same name.
+
+Example:
+
+#include <iostream>
+using namespace std;
+
+int x = 10;
+
+int main() {
+
+    int x = 20;
+
+    cout << x << endl;
+    cout << ::x << endl;
+
+    return 0;
+}
+
+Output:
+
+    20
+    10
+
+Explanation:
+
+    x      → local x
+    ::x    → global x
+
+
+==================================================
+10. IMPORTANT IDEA
+==================================================
+
+When C++ searches for a variable, it generally looks in the current
+(inner) scope first.
+
+If it does not find it, it can look in an enclosing/outer scope.
+
+Therefore:
+
+    Inner scope
+        ↓
+    Outer scope
+        ↓
+    Global scope
+
+A declaration in an inner scope can hide a declaration with the same
+name in an outer scope.
+
+
+==================================================
+11. QUICK EXAMPLE
+==================================================
+
+int x = 5;
+
+int main() {
+
+    cout << x << endl;     // 5
+
+    {
+        int x = 10;
+
+        cout << x << endl; // 10
+        cout << ::x << endl; // 5
+    }
+
+    cout << x << endl;     // 5
+
+    return 0;
+}
+
+Why?
+
+Outside the block:
+    x → global x → 5
+
+Inside the block:
+    x → local x → 10
+
+Using ::x:
+    explicitly accesses global x → 5
+
+
+==================================================
+12. SCOPE — QUICK REVISION
+==================================================
+
+SCOPE answers:
+
+    "Where can I use this variable?"
+
+LOCAL/BLOCK SCOPE:
+    Variable can be used only inside its defining block/scope.
+
+GLOBAL SCOPE:
+    Variable is declared outside functions and can be accessed
+    according to global scope rules.
+
+INNER SCOPE:
+    Can generally access variables from outer scopes.
+
+OUTER SCOPE:
+    Cannot access variables declared only inside an inner scope.
+
+SCOPE RESOLUTION OPERATOR:
+    ::
+
+    ::x → global x when a local x is hiding it.
+
+
+==================================================
+13. ONE-MINUTE CHEAT SHEET
+==================================================
+
+    int x = 10;        // global if outside all functions
+
+    int main() {
+        int y = 20;    // local to main
+
+        {
+            int z = 30; // local to this inner block
+        }
+
+        // z cannot be used here
+    }
+
+Remember:
+
+    Inner can access outer.
+    Outer cannot access inner.
+    Inner declaration can hide outer declaration.
+    :: can explicitly refer to the global variable.
+
+
+==================================================
+END OF SCOPE NOTES
+==================================================
+
+These notes are prepared for the requested 18:00 → 24:00 section
+of Lecture 6 and are intended to be saved inside the Lecture-06 folder.
