@@ -1,0 +1,266 @@
+LECTURE 9 — STATIC vs DYNAMIC MEMORY ALLOCATION
+C++ Revision Notes
+
+Source: Apna College — Vectors in C++ | Arrays Part 2 | DSA Series by Shradha Ma'am
+Video: https://youtu.be/NWg38xWYzEg
+Section: 15:03 → 23:10
+
+1. STATIC MEMORY ALLOCATION
+----------------------------
+A fixed-size array has a fixed amount of storage.
+
+Example:
+    int arr[5] = {1, 2, 3, 4, 5};
+
+The array has space for 5 integers.
+It cannot simply grow to 6 elements when we need more space.
+
+Basic idea:
+    Fixed-size array → fixed size
+
+
+2. THE PROBLEM WITH FIXED ARRAYS
+--------------------------------
+Suppose:
+
+    int arr[5];
+
+Later we discover that we need 10 elements.
+
+The existing array cannot simply change from size 5 to size 10.
+We would need a different, larger memory area and move/copy the
+existing elements.
+
+This is inconvenient when the required number of elements is not
+known beforehand.
+
+
+3. DYNAMIC MEMORY ALLOCATION
+----------------------------
+Dynamic allocation means memory can be obtained while the program
+is running according to the requirement.
+
+This is the idea behind dynamically growing containers such as
+C++ vectors.
+
+Basic idea:
+
+    Static/fixed array → fixed storage
+    Dynamic structure → storage can grow as needed
+
+
+4. VECTOR AS A DYNAMIC ARRAY
+----------------------------
+A vector is an array-like container whose size can change.
+
+Example:
+
+    #include <vector>
+
+    vector<int> v;
+
+We can add elements:
+
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+Now:
+
+    v = {10, 20, 30}
+
+The vector can continue to grow as more elements are added.
+
+
+5. ARRAY vs VECTOR
+------------------
+ARRAY:
+
+    int arr[5];
+
+    • Fixed size
+    • Size does not automatically grow
+    • Good when the required size is known
+
+VECTOR:
+
+    vector<int> v;
+
+    • Dynamic size
+    • Can grow using push_back()
+    • Useful when the number of elements can change
+
+The lecture uses the static-vs-dynamic idea to motivate vectors;
+vectors are commonly described as dynamic containers that resize
+as elements are added.
+
+
+6. SIZE vs CAPACITY
+-------------------
+A vector has two important ideas:
+
+SIZE:
+    Number of elements currently stored.
+
+    v.size()
+
+CAPACITY:
+    Amount of storage currently available for elements before another
+    allocation may be required.
+
+    v.capacity()
+
+Example:
+
+    size = 3
+    capacity = 4
+
+This means:
+    3 elements are currently stored,
+    and the vector has room for at least one more element in its
+    current allocated storage.
+
+
+7. WHY CAPACITY EXISTS
+----------------------
+A vector does not have to allocate a brand-new memory block for every
+single push_back().
+
+Instead, it can keep some extra capacity.
+
+Conceptually:
+
+    [10][20][30][   ]
+     size = 3
+     capacity = 4
+
+When the capacity becomes full and another element is required,
+the vector can allocate a larger memory block and move/copy the
+existing elements into it.
+
+The exact growth factor is an implementation detail and should not
+be memorized as one fixed value.
+
+
+8. BASIC VECTOR CODE
+--------------------
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+    vector<int> v;
+
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    cout << "size = " << v.size() << endl;
+    cout << "capacity = " << v.capacity() << endl;
+
+    return 0;
+}
+
+Important functions:
+
+    push_back(x)
+        → adds x at the end
+
+    size()
+        → number of elements currently stored
+
+    capacity()
+        → currently allocated storage
+
+
+9. MEMORY IDEA
+--------------
+Fixed-size array:
+
+    [1][2][3][4][5]
+
+    fixed amount of space
+
+
+Vector:
+
+    [1][2][3][4]
+             ↑
+        extra capacity
+
+When more space is needed:
+
+    OLD MEMORY
+    [1][2][3][4]
+
+          ↓
+
+    NEW, LARGER MEMORY
+    [1][2][3][4][5][6][...]
+
+The vector manages the storage and growth for you.
+
+
+10. WHY VECTORS ARE USEFUL
+--------------------------
+Vectors are useful when:
+
+    • The number of elements is not known in advance.
+    • The number of elements may increase or decrease.
+    • We want array-style indexing.
+    • We want convenient operations such as push_back() and pop_back().
+
+Vectors are a major part of the C++ Standard Template Library (STL).
+
+
+11. STATIC vs DYNAMIC — QUICK COMPARISON
+----------------------------------------
+                     ARRAY          VECTOR
+
+Size                 Fixed           Dynamic
+Growth               Not automatic   Automatic
+Add at end           No auto-grow     push_back()
+Indexing              arr[i]           v[i]
+Best for              Known size      Changing size
+
+
+12. IMPORTANT TERMINOLOGY
+-------------------------
+STATIC / FIXED:
+    Storage is arranged with a fixed size for the data structure.
+
+DYNAMIC:
+    Storage can be allocated/reallocated while the program runs.
+
+VECTOR:
+    A dynamic array-like container that manages this storage.
+
+
+13. ONE-MINUTE REVISION
+-----------------------
+    int arr[5];
+        → fixed-size array
+
+    vector<int> v;
+        → dynamic array-like container
+
+    v.push_back(x);
+        → add x
+
+    v.size();
+        → number of stored elements
+
+    v.capacity();
+        → currently allocated element capacity
+
+MAIN IDEA:
+
+    Array  = fixed-size
+    Vector = flexible/dynamic-size
+
+The reason we learn static vs dynamic allocation here is to
+understand the problem vectors solve: the need for a collection that
+can grow without manually creating a new fixed-size array each time.
+
+END OF NOTES

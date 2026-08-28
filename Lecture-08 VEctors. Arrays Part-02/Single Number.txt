@@ -1,0 +1,346 @@
+Lecture 9 — Practice Problem: Single Number
+Revision Notes (23:00–38:20)
+
+TOPIC
+Single Number / Unique Element using Bitwise XOR
+
+1. THE PROBLEM
+
+We are given an array/vector in which:
+- Every element appears exactly twice.
+- Only one element appears once.
+- We have to find that single/unique element.
+
+Example:
+nums = [4, 1, 2, 1, 2]
+
+Answer = 4
+
+The important part is not just solving this particular question, but learning how an old concept (bitwise XOR) can be used to solve a DSA problem efficiently.
+
+2. DSA PRACTICE MINDSET
+
+When solving DSA problems:
+- First learn the concept.
+- Then practice many problems yourself.
+- Do not depend only on questions you have already seen.
+- In tests/interviews, the exact same question may not appear.
+- Practice helps you learn how to solve unfamiliar problems.
+
+Difficulty progression:
+Easy → Medium → Hard
+
+Start with Easy problems, build confidence, then move upward.
+
+3. LEETCODE FORMAT
+
+On coding platforms such as LeetCode, we are often not asked to write the complete program.
+
+Instead, we are given:
+- A class
+- A function
+- The return type
+- The function name
+- The input parameter
+
+We only write the solution inside the given function.
+
+For this problem:
+- Return type: int
+- Function name: singleNumber
+- Input: vector of integers named nums
+- Final answer: the unique integer, which is returned
+
+4. WHY & IS USED WITH THE VECTOR
+
+The vector parameter can be written like:
+
+vector<int>& nums
+
+The & means the vector is passed by reference.
+
+A reference gives the function an alternate name (alias) for the original vector instead of creating a separate copy.
+
+Important:
+For this particular problem, we do not actually need to modify the vector. The & is part of the function signature provided/commonly used on the platform, and it avoids making an unnecessary copy.
+
+5. TIME AND SPACE COMPLEXITY
+
+The problem requires:
+- Linear runtime: O(n)
+- Constant extra space: O(1)
+
+The challenge specifically asks for a solution using one loop rather than nested loops.
+
+A nested-loop solution could compare every element with every other element, but that would be slower (O(n²)).
+
+The goal is to solve it in O(n).
+
+6. THE BASIC IDEA
+
+Think about a very small example:
+
+4, 1, -4
+
+If we could simply add them:
+4 + 1 + (-4) = 1
+
+The duplicate values cancel each other, leaving the unique value.
+
+For the actual problem, the numbers are not given as positive/negative pairs.
+
+So we need another operation that can make identical values cancel.
+
+That operation is BITWISE XOR (^).
+
+7. XOR RULES
+
+Basic XOR truth table:
+
+0 ^ 0 = 0
+0 ^ 1 = 1
+1 ^ 0 = 1
+1 ^ 1 = 0
+
+The most important property here is:
+
+Same bits XOR → 0
+
+Therefore:
+
+n ^ n = 0
+
+Examples:
+
+2 ^ 2 = 0
+6 ^ 6 = 0
+
+This is similar to cancellation:
++2 + (-2) = 0
+and with XOR:
+2 ^ 2 = 0
+
+8. WHY XOR WORKS FOR THIS PROBLEM
+
+Computers internally represent integers in binary.
+
+For example:
+
+2 = 10
+2 = 10
+
+XOR:
+
+10
+10
+--
+00
+
+So:
+
+2 ^ 2 = 0
+
+Now consider:
+
+6 = 110
+6 = 110
+
+110
+110
+---
+000
+
+Therefore:
+
+6 ^ 6 = 0
+
+Any number XORed with itself becomes zero.
+
+9. THE OTHER IMPORTANT XOR PROPERTY
+
+Another important property is:
+
+0 ^ n = n
+
+Examples:
+
+0 ^ 4 = 4
+0 ^ 7 = 7
+
+So if all duplicate numbers cancel to zero, the remaining unique number survives.
+
+10. ORDER DOES NOT MATTER
+
+For this problem, we can XOR all the elements one after another.
+
+For example:
+
+4 ^ 1 ^ 1 ^ 2 ^ 2
+
+The duplicates cancel:
+
+1 ^ 1 = 0
+2 ^ 2 = 0
+
+So we are left with:
+
+4
+
+It does not matter which duplicate pair is encountered first.
+
+Example:
+
+4 ^ 1 ^ 2 ^ 1 ^ 2
+
+First:
+4 ^ 1 = 5
+
+Then:
+5 ^ 2 = 7
+
+Then:
+7 ^ 1 = 6
+
+Then:
+6 ^ 2 = 4
+
+Final answer = 4
+
+11. HOW THE LOOP WORKS
+
+We create one variable to store the running XOR result:
+
+answer = 0
+
+Then loop through every value in the vector.
+
+For every value:
+
+answer = answer ^ value
+
+After all elements are processed:
+- Every duplicated value has XORed with itself.
+- Each duplicate pair becomes 0.
+- 0 does not change the unique value.
+- Therefore answer becomes the single number.
+
+12. CODE LOGIC
+
+The function logic is:
+
+int answer = 0;
+
+for (int value : nums) {
+    answer ^= value;
+}
+
+return answer;
+
+The shorter:
+
+answer ^= value;
+
+means exactly:
+
+answer = answer ^ value;
+
+13. STEP-BY-STEP EXAMPLE
+
+nums = [4, 1, 1]
+
+Start:
+
+answer = 0
+
+First value = 4:
+answer = 0 ^ 4
+answer = 4
+
+Second value = 1:
+answer = 4 ^ 1
+answer = 5
+
+Third value = 1:
+answer = 5 ^ 1
+answer = 4
+
+Final:
+
+answer = 4
+
+So the unique number is 4.
+
+14. WHY ONLY ONE LOOP?
+
+We visit each element exactly once.
+
+If there are n elements:
+- 1 operation per element
+- Total work grows linearly with n
+
+Therefore:
+
+Time Complexity = O(n)
+
+Only one extra variable (answer) is used.
+
+Therefore:
+
+Extra Space = O(1)
+
+15. TWO KEY XOR PROPERTIES TO REMEMBER
+
+Property 1:
+n ^ n = 0
+
+Property 2:
+0 ^ n = n
+
+These two properties are the main reason the solution works.
+
+A useful mental picture:
+
+Duplicate → CANCEL
+Unique → SURVIVES
+
+16. MAIN TAKEAWAY
+
+This problem teaches more than the answer to "Single Number."
+
+It teaches how a small concept learned earlier — bitwise XOR — can become a useful tool for solving a DSA problem.
+
+Important lesson:
+
+Do not assume that a small or simple concept is unimportant.
+
+Concepts such as bitwise operators can later become the key to solving larger DSA problems.
+
+17. QUICK REVISION
+
+Problem:
+Every element appears twice except one. Find the single element.
+
+Idea:
+Use XOR.
+
+Remember:
+
+n ^ n = 0
+0 ^ n = n
+
+Approach:
+1. Set answer = 0.
+2. Run one loop through the vector.
+3. XOR every value with answer.
+4. Return answer.
+
+Complexity:
+Time = O(n)
+Extra Space = O(1)
+
+CORE MEMORY LINE:
+
+"Duplicate numbers cancel under XOR, and the unique number remains."
+
+Note:
+This revision file covers the Single Number discussion from approximately 23:00 to 38:20 of the lecture.
